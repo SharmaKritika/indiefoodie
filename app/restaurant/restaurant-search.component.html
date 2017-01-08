@@ -1,0 +1,41 @@
+<div>
+    <div class="row"><div class="col-lg-6"><h2>Find food in:</h2></div></div> 
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <input  (keyup.enter)='getRestaurantsBySearchKey()' autofocus type="text" class="form-control" placeholder="Enter your suburb or postcode"
+                            [(ngModel)] = 'searchKey' />
+                <span class="input-group-btn">
+                    <button class="btn btn-default" (click) = 'getRestaurantsBySearchKey()'>Let's Go!</button>
+                </span>
+                
+            </div>
+        </div>
+    </div>   
+            
+    <div>{{error}}</div>
+            
+</div>
+
+<div class="container-fluid" *ngIf="restaurants && restaurants.length > 0">
+    <div><h3>You have {{restaurants.length}} restaurants to choose from</h3></div>
+        <ul style= "margin-top: 50px;" class="media-list" *ngFor="let restaurant of restaurants">
+        <li class="media">
+            <div class="media-left">
+                <img style="width:200px;" class="media-object img-fluid" src="http://lorempixel.com/400/200/food">
+            </div>
+            <div class="media-body">
+            <h4 class="media-heading"><a [routerLink] = '["/restaurants", restaurant.id ]'>{{restaurant.name}}</a></h4>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.
+            </div>
+        </li>
+        </ul>
+</div>
+<div *ngIf="restaurants && restaurants.length == 0">
+    <div class="alert alert-info" role="alert" style="margin-top: 20px;">
+        <h4 class="alert-heading">No search results found!</h4>
+        <p>For test purposes, only some suburbs or post-code data has been used. Please use any of the following as search key.</p>
+        <p class="mb-0">Springfield Lakes-4300, Forest Lake-4078, Parkinson-4115, Fitzgibbon-4018, Kelvin Grove-4059.</p>
+    </div>
+</div>

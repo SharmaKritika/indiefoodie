@@ -1,0 +1,31 @@
+[{
+        "restId": 1,
+        "vouchers":[{
+            "code": "100",
+            "startDate": "",
+            "endDate": "",
+            "discount": 15
+        },
+        {
+            "code": "101",
+            "startDate": "",
+            "endDate": "",
+            "discount": 12
+        }
+
+        ]
+    },
+
+    {
+        "restId": 4,
+        "vouchers":[{
+            "code": "400",
+            "startDate": "",
+            "endDate": "",
+            "discount": 10
+        }
+
+        ]
+    }
+
+]
