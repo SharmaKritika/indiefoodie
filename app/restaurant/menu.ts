@@ -1,8 +1,3 @@
-export interface IMenu {
-    restId: number,
-    menuItems: IMenuItem[]
-}
-
 export interface IMenuItem {
     id: number,
     title: string,

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IRestaurant } from './restaurant';
-import { IMenu } from './menu';
+import { IMenuItem } from './menu';
 
 import { RestaurantService } from './restaurant.service';
 import {Router, ActivatedRoute } from '@angular/router';
@@ -12,7 +12,7 @@ import {Router, ActivatedRoute } from '@angular/router';
 
 export class RestaurantDetailComponent {
     restaurant: IRestaurant;
-    menu: IMenu;
+    menuItems: IMenuItem[];
 
     constructor(private _restaurantService: RestaurantService,
                 private _route: ActivatedRoute,
@@ -37,17 +37,17 @@ export class RestaurantDetailComponent {
         
         this._restaurantService.getMenuById(id)
                                                 .subscribe(
-                                                    (menu: IMenu) => 
+                                                    (menuItems: IMenuItem[]) => 
                                                     {
-                                                        this.menu = menu;
-                                                        this.menu.menuItems.forEach( i => i.isOrdered = false);
+                                                        menuItems.forEach( i => i.isOrdered = false);
+                                                        this.menuItems = menuItems;
                                                     }
                                                 );
 
     }
 
     placeOrder() {
-        var orderedMenuItemIds = this.menu.menuItems
+        var orderedMenuItemIds = this.menuItems
             .filter( e => e.isOrdered)
             .map( e => e.id)
             .join(',');

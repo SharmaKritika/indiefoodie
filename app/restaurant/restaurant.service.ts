@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http'; 
 import { Observable } from 'rxjs/Observable';
 import { IRestaurant } from './restaurant';
-import { IMenu, IMenuItem } from './menu';
+import { IMenuItem } from './menu';
 import { IVoucher, IRestaurantVoucher } from './voucher';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -10,8 +10,8 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 
 export class RestaurantService {
-    private url = "api/restaurants/restaurants.json";
-    private menuUrl = "api/restaurants/menu.json";
+    private url = "http://indiefoodiewebapi.azurewebsites.net/api/restaurants";
+    
     private voucherUrl = "api/restaurants/voucher.json";
 
     constructor (private _http: Http) { }
@@ -45,25 +45,26 @@ getRestaurantById(id: number): Observable<IRestaurant> {
                                 });
 }
 
-getMenuById(id: number): Observable<IMenu> {
-    return this._http.get(this.menuUrl)
+getMenuById(restaurantId: number): Observable<IMenuItem[]> {
+    let menuUrl = this.url +'/' + restaurantId +'/menuitems'; 
+    return this._http.get(menuUrl)
                         .map(
                                 (response: Response) =>
                                 {
-                                    let menus = <IMenu[]>response.json();
-                                    return menus.find((menu: IMenu) =>  menu.restId == id)
+                                    return <IMenuItem[]>response.json();
                                 });
 }
+
 getMenuItemsById(restid: number, menuItemIdsAsStr: string): Observable<IMenuItem[]> {
     var menuItemIds = menuItemIdsAsStr.split(',').map( i => parseInt(i)); 
-    return this._http.get(this.menuUrl)
+    let menuUrl = this.url +'/' + restid +'/menuitems'; 
+    return this._http.get(menuUrl)
                         .map(
                                 (response: Response) =>
                                 {
-                                    let menus = <IMenu[]>response.json();
-                                    return <IMenuItem[]>menus
-                                        .find(menu =>  menu.restId == restid)
-                                        .menuItems.filter(item => menuItemIds.indexOf(item.id) > -1 );
+                                    let allMenuItems = <IMenuItem[]>response.json();
+                                    return allMenuItems
+                                        .filter(item => menuItemIds.indexOf(item.id) > -1 );
                                 });
 }
 

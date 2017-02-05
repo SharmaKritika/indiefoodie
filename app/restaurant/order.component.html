@@ -22,7 +22,6 @@
 <div>Please add your voucher code:
             <input type="text" [(ngModel)]="voucherCode" />
             <button (click)="applyVoucher()">Apply</button>
-            <div *ngIf="voucher">{{voucher.discount}}</div>
 </div>
 
 <div class="col-md-8"><label><h3  class="text-right">Sum Total: {{total}}</h3></label></div> 

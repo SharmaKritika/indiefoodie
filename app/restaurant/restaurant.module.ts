@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 
+
 @NgModule({
     declarations: [RestaurantSearchComponent, RestaurantDetailComponent, OrderComponent],
     exports: [RestaurantSearchComponent],

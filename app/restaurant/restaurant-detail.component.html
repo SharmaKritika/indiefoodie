@@ -8,7 +8,7 @@
 
 
 
-<table class="table table-striped table-hover" *ngIf="menu">
+<table class="table table-striped table-hover" *ngIf="menuItems">
     <thead class="thead-inverse">
     <tr class="lead">
         <th>Popular Dishes</th>
@@ -16,7 +16,7 @@
         <th>Add to order</th>
     </tr>
     </thead>
-    <tr *ngFor = "let menuItem of menu.menuItems">
+    <tr *ngFor = "let menuItem of menuItems">
         <td>
             <tr class="lead">{{menuItem.title}}</tr>
             <tr>{{menuItem.description}}</tr>

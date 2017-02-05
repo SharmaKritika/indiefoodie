@@ -11,6 +11,7 @@ export class RestaurantSearchComponent {
     searchKey: string;
     error: string;
 
+
     constructor(private _restaurantService: RestaurantService) {}
 
     getRestaurantsBySearchKey(): void {
