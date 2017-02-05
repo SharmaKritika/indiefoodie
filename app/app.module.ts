@@ -5,6 +5,7 @@ import { WelcomeComponent } from './home/welcome.component';
 import { AppComponent }  from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+
 @NgModule({
   imports: [BrowserModule, RestaurantModule, AppRoutingModule],
   declarations: [ AppComponent, WelcomeComponent],
