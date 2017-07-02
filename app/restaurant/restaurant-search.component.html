@@ -3,10 +3,10 @@
     <div class="row">
         <div class="col-lg-6">
             <div class="input-group">
-                <input  (keyup.enter)='getRestaurantsBySearchKey()' autofocus type="text" class="form-control" placeholder="Enter your suburb or postcode"
+                <input id="searchKey" (keyup.enter)='getRestaurantsBySearchKey()' autofocus type="text" class="form-control" placeholder="Enter your suburb or postcode"
                             [(ngModel)] = 'searchKey' />
                 <span class="input-group-btn">
-                    <button class="btn btn-default" (click) = 'getRestaurantsBySearchKey()'>Let's Go!</button>
+                    <button id="searchButton" class="btn btn-default" (click) = 'getRestaurantsBySearchKey()'>Let's Go!</button>
                 </span>
                 
             </div>
@@ -19,17 +19,17 @@
 
 <div class="container-fluid" *ngIf="restaurants && restaurants.length > 0">
     <div><h3>You have {{restaurants.length}} restaurants to choose from</h3></div>
-        <ul style= "margin-top: 50px;" class="media-list" *ngFor="let restaurant of restaurants">
-        <li class="media">
-            <div class="media-left">
-                <img style="width:200px;" class="media-object img-fluid" src="http://lorempixel.com/400/200/food">
-            </div>
-            <div class="media-body">
-            <h4 class="media-heading"><a [routerLink] = '["/restaurants", restaurant.id ]'>{{restaurant.name}}</a></h4>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.
-            </div>
-        </li>
+        <ul id="restaurantList" style= "margin-top: 50px;" class="media-list" >
+            <li class="media restaurant" *ngFor="let restaurant of restaurants">
+                <div class="media-left">
+                    <img style="width:200px;" class="media-object img-fluid" src="/app/assets/images/food.jpg">
+                </div>
+                <div class="media-body">
+                <h4 class="media-heading"><a [routerLink] = '["/restaurants", restaurant.id ]'>{{restaurant.name}}</a></h4>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                        incididunt ut labore et dolore magna aliqua.
+                </div>
+            </li>
         </ul>
 </div>
 <div *ngIf="restaurants && restaurants.length == 0">

@@ -1,4 +1,4 @@
-<h2>Order Placed:</h2>
+<h2 id="orderPlacedTitle">Order Placed:</h2>
 
   <table class="table table-striped table-hover" *ngIf="orderedMenuItems">
     
@@ -24,4 +24,4 @@
             <button (click)="applyVoucher()">Apply</button>
 </div>
 
-<div class="col-md-8"><label><h3  class="text-right">Sum Total: {{total}}</h3></label></div> 
+<div class="col-md-8"><label><h3  class="text-right">Sum Total: <span id="totalPrice">{{total}} </span></h3></label></div> 

@@ -8,7 +8,7 @@
 
 
 
-<table class="table table-striped table-hover" *ngIf="menuItems">
+<table id="menuItems" class="table table-striped table-hover" *ngIf="menuItems">
     <thead class="thead-inverse">
     <tr class="lead">
         <th>Popular Dishes</th>
@@ -23,8 +23,9 @@
         </td>
         <td>{{menuItem.price | currency:'AUD'}}</td>
         <td>
-                <input #cb1 style="margin-left:10%" type="checkbox" value="one" [(ngModel)]="menuItem.isOrdered">
+                <input class="menuItemChkBox" #cb1 style="margin-left:10%" type="checkbox" value="one" 
+                [(ngModel)]="menuItem.isOrdered">
         </td>
     </tr>
 </table>
-<button type="button" class="btn btn-primary center-block" (click)="placeOrder()">Place Order</button>
+<button id="placeOrderButton" type="button" class="btn btn-primary center-block" (click)="placeOrder()">Place Order</button>

@@ -10,7 +10,8 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 
 export class RestaurantService {
-    private url = "http://indiefoodiewebapi.azurewebsites.net/api/restaurants";
+    //private url = "http://indiefoodiewebapi.azurewebsites.net/api/restaurants";
+    private url = "http://localhost:3100/api/restaurants";
     
     private voucherUrl = "api/restaurants/voucher.json";
 
@@ -23,7 +24,7 @@ export class RestaurantService {
                                 (response: Response) =>
                                 {
                                     let restaurants = <IRestaurant[]>response.json();
-                                    return restaurants.filter((restaurant: IRestaurant) =>  restaurant.suburb == searchKey.toLowerCase()
+                                    return restaurants.filter((restaurant: IRestaurant) =>  restaurant.suburb.toLowerCase() == searchKey.toLowerCase()
                                     || restaurant.postcode == searchKey)
                                 })
                         .catch(this.handleError);
